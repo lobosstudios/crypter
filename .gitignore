@@ -1,0 +1,7 @@
+.idea/**
+.gradle/**
+gradle/**
+gradlew*
+# gradle.properties contains publishing credentials
+gradle.properties
+build/**
