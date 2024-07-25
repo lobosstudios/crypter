@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'maven-publish'
+    id "io.github.gradle-nexus.publish-plugin" version "1.1.0"
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+def ourGroupId = 'com.lobosstudios'
+def ourArtifactId = 'crypter'
+def ourVersionNumber = '1.0.0'
+
+group ourGroupId
+version ourVersionNumber
+
+def scmUrl = 'git@github.com:lobosstudios/crypter.git'
+def licenseName = 'MIT'
+def licenseUrl = 'https://opensource.org/license/mit'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.17.1'
+}
+
+application {
+    mainClass = 'com.lobosstudios.crypter.Main'
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = ourGroupId
+            artifactId = ourArtifactId
+            version = ourVersionNumber
+
+            from components.java
+        }
+    }
+}
+
+nexusPublishing {
+    useStaging = false
+    repositories {
+        myNexus {
+            nexusUrl = uri(maven1Url)
+            snapshotRepositoryUrl = uri(maven1Url)
+            username = maven1User
+            password = maven1Password
+        }
+    }
+}
+
