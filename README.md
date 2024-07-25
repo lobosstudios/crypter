@@ -1,4 +1,4 @@
-# Encrypter
+# Crypter
 
 This is a small library used to encrypt passwords.
 
@@ -8,7 +8,7 @@ This is a small library used to encrypt passwords.
 
 If you are generating a hash from a plaintext password, `ourSalt` must be null. The salt is only specified when you are verifying a password.
 
-`com.lobosstudios.crypter.Encrypter. verify(String encrypted, String passwordToVerify)` returns true if the encrypted hash matches the unencrypted password. The passwords are compared this way:
+`com.lobosstudios.crypter.Encrypter.verify(String encrypted, String passwordToVerify)` returns true if the encrypted hash matches the unencrypted password. The passwords are compared this way:
 * The salt is extract from the encrypted password.
 * `encrypt()` is called, passing the plaintext password and the salt. 
 * Given the same salt and the same plaintext password, `encrypt()` will return the same string we passed in. If the string we generate is identical to `encrypted`, we return true; otherwise we return false.
